@@ -3,8 +3,8 @@
 namespace projects{
     class Program{
 
-        static void Main(){
-          
+        static void Main()
+        {
             double[] masfactor;
             // int[] mas =new int[5]{-1,2,3,-4,5};
             System.Console.Write("Enter the numbers that splits probelom:   ");
