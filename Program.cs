@@ -74,9 +74,7 @@ namespace projects{
 
 
         }
-        public static void doubfactors(double[] t){
-
-        }
+        
     }
 
 }
