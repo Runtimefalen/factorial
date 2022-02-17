@@ -1,0 +1,26 @@
+using System;
+namespace Project
+{
+    class Factorials
+    {
+        static void Main()
+        {
+        System.Console.WriteLine("Введите число для определения его факториала: ");
+        int factorial=Convert.ToInt32(System.Console.ReadLine());
+        System.Console.Write("Факториал числа "+factorial);
+        factorial=Factorial(factorial);
+        Console.WriteLine($" = {factorial}");
+           
+        }
+        
+        static int Factorial(int n)
+        {
+            
+            if (n == 1) return 1;
+            return n * Factorial(n - 1);
+        
+        }
+ 
+           
+        }
+    }
