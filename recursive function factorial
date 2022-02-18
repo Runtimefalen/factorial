@@ -1,0 +1,77 @@
+using System;
+
+namespace Project
+{
+    class Factorials
+    {   
+        static void Main()
+        {
+            try
+            {
+                var userInput = GetUserInput();
+                var parsedInput = ParseAndValidateInput(userInput);
+                var factorial = Factorial(parsedInput);
+                DisplayResult(factorial);
+            }
+            catch (Exception ex)
+            {
+                DisplayError(ex);
+            }
+        }
+
+        private static int Factorial(int n)
+        {
+            if (n == 1) 
+                return 1;
+            
+            return n * Factorial(n - 1);
+        }
+        
+        private static string? GetUserInput()
+        {
+            Console.Write("Введите число для определения его факториала: ");
+            return Console.ReadLine();
+        }
+
+        private static int ParseAndValidateInput(string? userInput)
+        {
+           if (string.IsNullOrEmpty(userInput))
+           {
+               throw new ArgumentException("input is empty");
+           }
+
+            var inputParsed = int.TryParse(userInput, out var parsedValue);
+
+            if (!inputParsed)
+            {
+                throw new System.ArgumentException("input not integer!");
+            }
+
+            if (parsedValue < 1)
+            {
+                throw new ArgumentException("input less than 1");
+            }
+
+            if (parsedValue > 12)
+            {
+                throw new ArgumentException("input greater than 12");
+            }
+
+            return parsedValue;
+        }
+
+        private static void DisplayResult(int factorial)
+        {
+            Console.WriteLine("Полученный результат: {0}", factorial);
+            // Console.ReadKey();
+        }
+
+        private static void DisplayError(Exception ex)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(ex.Message);
+            Console.ResetColor();
+        }
+        
+    }
+}
