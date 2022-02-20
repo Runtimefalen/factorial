@@ -1,0 +1,36 @@
+using System;
+
+namespace Project
+{
+
+    class Names
+    {
+        static void Main()
+        {
+            var userInput = GetUserInput();
+            var parsedInput = ParseAndValidateInput(userInput);
+            DisplayResult(parsedInput);
+        }
+
+        private static string? GetUserInput()
+        {
+            Console.Write("Enter the names separated by commas: ");
+            return Console.ReadLine();
+        }
+
+        private static string ParseAndValidateInput(string? userInput)
+        {
+            if (string.IsNullOrEmpty(userInput))
+            {
+                throw new ArgumentException("input is empty!");
+            }
+           return userInput;
+        }
+
+        private static void DisplayResult(string? names)
+        {
+            Console.WriteLine("Полученный результат: {0}", names);
+            // Console.ReadKey();
+        }
+    }
+}
