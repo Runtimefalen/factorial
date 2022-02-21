@@ -63,21 +63,7 @@ namespace Project
                     {
 
                     }
-
-                    for (int k = 0 ; k < names.Length; k++)
-                    {
-                        if (int.TryParse(names[k], out int number))
-                        {
-                            Console.WriteLine("You intered the number {0}", number);
-                            throw new ArgumentException ("input has an integer value!");
-                        }
-
-                        if (names[k] == string.Empty)
-                        {
-                            Console.WriteLine("written white space field");
-                            throw new ArgumentException ("input has a null value!");
-                        }
-                    }
+                    findIncorrectValue(names);
                 }
             }
                 
@@ -85,18 +71,34 @@ namespace Project
                 return sortValues;
         }
 
+        private static void findIncorrectValue(string[] inValue)
+        {
+            for (int k = 0 ; k < inValue.Length; k++)
+                    {
+                        if (int.TryParse(inValue[k], out int number))
+                        {
+                            Console.WriteLine("You intered the number {0}", number);
+                            throw new ArgumentException ("input has an integer value!");
+                        }
+
+                        if (inValue[k] == string.Empty)
+                        {
+                            Console.WriteLine("written white space field");
+                            throw new ArgumentException ("input has a null value!");
+                        }
+                    }
+                
+        }
         private static void DisplayError(Exception ex)
         {
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.WriteLine(ex.Message);
             Console.ResetColor();
         }
-            
-        
 
         private static void DisplayResult(string? names)
         {
-            Console.WriteLine("Полученный результат: {0}", names);
+            Console.WriteLine("Names sorted in order: {0}", names);
         }
     }
 }
