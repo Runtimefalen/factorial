@@ -2,7 +2,6 @@ using System;
 
 namespace Project
 {
-
     class Names
     {
         static void Main()
@@ -11,8 +10,8 @@ namespace Project
             {
                 var userInput = GetUserInput();
                 string validateInput = ValidateInput(userInput);
-                var trimedValue = Sort(validateInput);
-                DisplayResult(trimedValue);
+                var sortValue = Sort(validateInput);
+                DisplayResult(sortValue);
             }
             catch (Exception ex)
             {
@@ -35,9 +34,9 @@ namespace Project
             return validateInput;
         }
 
-        private static string Sort(string inputWithoutEmptySpaces)
+        private static string Sort(string validateInput)
         {
-            string[] names = inputWithoutEmptySpaces.Split(new char[] { ',' });
+            string[] names = validateInput.Split(new char[] { ',' });
             
             for (int i = 0; i < names.Length; i++)
             {
@@ -67,6 +66,12 @@ namespace Project
 
                     for (int k = 0 ; k < names.Length; k++)
                     {
+                        if (int.TryParse(names[k], out int number))
+                        {
+                            Console.WriteLine("You intered the number {0}", number);
+                            throw new ArgumentException ("input has an integer value!");
+                        }
+
                         if (names[k] == string.Empty)
                         {
                             Console.WriteLine("written white space field");
