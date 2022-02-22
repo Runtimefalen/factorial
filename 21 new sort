@@ -9,8 +9,9 @@ namespace Project
             try
             {
                 var userInput = GetUserInput();
-                string validateInput = ValidateInput(userInput);
-                var sortValue = Sort(validateInput);
+                string[] splitInput = Split(userInput);
+                findIncorrectValue(splitInput);
+                var sortValue = Sort(splitInput);
                 DisplayResult(sortValue);
             }
             catch (Exception ex)
@@ -25,33 +26,28 @@ namespace Project
                 return Console.ReadLine();
         }
 
-        private static string ValidateInput(string? validateInput)
+        private static string[] Split(string userInput)
         {
-            if (string.IsNullOrEmpty(validateInput))
-            {
-                throw new ArgumentException("input is empty!");
-            }
-            return validateInput;
+            string[] names = userInput.Split(new char[] { ',' });
+                return names;
         }
 
-        private static string Sort(string validateInput)
+        private static string Sort(string[] validateInput)
         {
-            string[] names = validateInput.Split(new char[] { ',' });
-            
-            for (int i = 0; i < names.Length; i++)
+            for (int i = 0; i < validateInput.Length; i++)
             {
-                names[i] = names[i].Trim(new char[] {' '});
+                validateInput[i] = validateInput[i].Trim(new char[] {' '});
                 
-                for (int j = 0; j < names.Length; j++)
+                for (int j = 0; j < validateInput.Length; j++)
                 {
-                    names[j] = names[j].Trim(new char[] {' '});
-                    int result = string.Compare(names[i], names[j]);
+                    validateInput[j] = validateInput[j].Trim(new char[] {' '});
+                    int result = string.Compare(validateInput[i], validateInput[j]);
                     
                     if (result < 0)
                     {
-                        var storage = names[i];
-                        names[i] = names[j];
-                        names[j] = storage;
+                        var storage = validateInput[i];
+                        validateInput[i] = validateInput[j];
+                        validateInput[j] = storage;
                     }
                     
                     else if (result > 0)
@@ -63,11 +59,10 @@ namespace Project
                     {
 
                     }
-                    findIncorrectValue(names);
                 }
             }
                 
-                string sortValues = string.Join(", ", names);
+                string sortValues = string.Join(", ", validateInput);
                 return sortValues;
         }
 
@@ -75,6 +70,11 @@ namespace Project
         {
             for (int k = 0 ; k < inValue.Length; k++)
                     {
+                        if (string.IsNullOrEmpty(inValue[k]))
+                        {
+                            throw new ArgumentException("input is empty!");
+                        }
+
                         if (int.TryParse(inValue[k], out int number))
                         {
                             Console.WriteLine("You intered the number {0}", number);
@@ -86,6 +86,12 @@ namespace Project
                             Console.WriteLine("written white space field");
                             throw new ArgumentException ("input has a null value!");
                         }
+
+                        // bool hasSpace = inValue[k].Contains(" ");
+                        // if (hasSpace)
+                        // {
+                        //     throw new ArgumentException("whitespace in one or more of your input names!");
+                        // }
                     }
                 
         }
