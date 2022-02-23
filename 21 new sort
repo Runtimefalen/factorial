@@ -9,7 +9,7 @@ namespace Project
             try
             {
                 var userInput = GetUserInput();
-                string[] splitInput = Split(userInput);
+                string[] splitInput = userInput.Split(new char[] { ',' });
                 findIncorrectValue(splitInput);
                 var sortValue = Sort(splitInput);
                 DisplayResult(sortValue);
@@ -24,12 +24,6 @@ namespace Project
         {
             Console.Write("Enter the names separated by commas:");
                 return Console.ReadLine();
-        }
-
-        private static string[] Split(string userInput)
-        {
-            string[] names = userInput.Split(new char[] { ',' });
-                return names;
         }
 
         private static string Sort(string[] validateInput)
@@ -62,8 +56,8 @@ namespace Project
                 }
             }
                 
-                string sortValues = string.Join(", ", validateInput);
-                return sortValues;
+            string sortValues = string.Join(", ", validateInput);
+            return sortValues;
         }
 
         private static void findIncorrectValue(string[] inValue)
