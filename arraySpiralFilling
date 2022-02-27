@@ -1,0 +1,56 @@
+using System;
+namespace Project
+{
+    class Array
+    {
+        static void Main()
+        {
+            string[] demension = GetUserInput();
+            int m = Int32.Parse(demension[0]);
+            int n = Int32.Parse(demension[1]);
+            int[,] array = new int[m,n];
+            array = arrayMass(m,n);
+            DisplayArray(array);
+        }
+
+        private static string[] GetUserInput()
+        {
+            Console.Write("Enter m x n :");
+            string[] s = Console.ReadLine().Split(new[] { " ", ",", ";" }, StringSplitOptions.RemoveEmptyEntries);
+            return s;
+        }
+
+        private static int[,] arrayMass(int m, int n)
+        {
+            int count = 1;
+            int[,] array = new int[m,n];
+            
+            int rows = array.GetUpperBound(0) + 1;
+            int columns = array.Length / rows;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    array[i,j] = count;
+                    count++;
+                }
+            }
+            return array;
+        }
+
+        private static void DisplayArray(int[,] arr)
+        {
+            int rows = arr.GetUpperBound(0) + 1;
+            int columns = arr.Length / rows;
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    Console.Write(arr[i,j]+" ");
+                }
+                Console.WriteLine();
+            }
+            
+        }
+    }
+}
