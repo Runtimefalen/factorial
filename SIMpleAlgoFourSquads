@@ -1,29 +1,37 @@
 using System;
-namespace SpiralFillingNameSpace;
-
-    class SpiralFillingAlgorihm
+namespace Program
+{
+    class Program
     {
         static void Main()
         {
-        int m = 5;
-        int n = 6;
-        string[] result = new string[m*n];
-        for (int i = 1; i <= m*n; i++)
-        {
-            string res = i.ToString();
-            //Console.WriteLine(res + " res");
-            result[i-1] += String.Concat(res+" ");
-            //Console.Write(result[i-1]);
-        }
-        for (int a = 0; a < result.Length - 1; a++)
-        {
-            if (a%2!=0)
+            int m = 4;
+            int n = 3;
+            int res = m * n;
+            bool indEven = true;
+            string strOne = null;
+            string strTwo = null;
+            for (int i = 1; i <= 22; i++)
             {
-                string temp = result[a];
-                result[a] = result[a+1];
-                result[a+1] = temp;
+
+                if (i % 2 == 0 && indEven == true)
+                {
+                    indEven = false;
+                    strOne += (i - 1).ToString();
+                    strOne += i.ToString()+" ";
+                    i++;
+                }
+                if (i % 2 == 0 && indEven == false)
+                {
+                    indEven = true;
+                    strTwo += i.ToString();
+                    strTwo += (i - 1).ToString() + " ";
+                }
             }
-            Console.Write(result[a]);
+            Console.WriteLine(strOne);
+            Console.WriteLine(strTwo);
         }
+
+
     }
 }
