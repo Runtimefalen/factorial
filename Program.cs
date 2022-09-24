@@ -6,14 +6,13 @@ namespace projects{
         static void Main()
         {
             double[] masfactor;
-            // int[] mas =new int[5]{-1,2,3,-4,5};
             System.Console.Write("Enter the numbers that splits probelom:   ");
             var input=(string?)null;
             input= Console.ReadLine();
             
-            // if (!String.IsNullOrWhiteSpace(input)){
+          
 
-          string[] words = input.Split(new char[]{' '});//здесь записываю в массив сторковых переменных потому чт не знаю как на лету конвертировать в Double
+          string[] words = input.Split(new char[]{' '});
             masfactor = new double[words.Length];
             int count=0;
             foreach(string s in words){
@@ -22,21 +21,15 @@ namespace projects{
                 masfactor[count] = Convert.ToDouble(s);               
                 count++;
             }
-            // foreach(double s in masfactor){
-            //     System.Console.WriteLine(s);
-            // }
-            // }else System.Console.WriteLine("Error\nRepit");
-        
-        // factors(mas);
+           
         factorial(masfactor);
 
         }
-        // DOUBLE FACTORIAL COUNTER
+        
          public static void factorial(double[] mas){
               foreach(double a in mas){
                double num=a;
                
-            //    System.Console.Write("Число "+num); 
                double fact=1;
                 if(num>1&num%1==0){
                 for(double j=num;j>1;j--){
